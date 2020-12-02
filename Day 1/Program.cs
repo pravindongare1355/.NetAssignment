@@ -121,7 +121,7 @@ namespace EmployeeClass
         {
             set
             {
-                if(value>100000 && value <999999)
+                if(value>9999 && value <999999)
                 {
                     Basic = value;
                 }
@@ -172,6 +172,6 @@ namespace EmployeeClass
 
             return netSalary;
         }
-        #endregion
+        
     }
 }
