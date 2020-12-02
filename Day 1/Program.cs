@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,180 +8,170 @@ namespace EmployeeClass
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-
             Employee e = new Employee();
-
-            e.name = "";
-            Console.WriteLine(e.name);
+            
+            e.NAME = "";
+            Console.WriteLine(e.NAME);
             Employee e1 = new Employee();
-            e1.name = "pravin";
-            Console.WriteLine(e1.name);
+            e1.NAME = "pravin";
+            Console.WriteLine(e1.NAME);
 
 
 
-            e.BASIC = 190000;
-            Console.WriteLine("basic salary = " + e.BASIC);
+            e.BASIC = 150000;
+            Console.WriteLine("basic salary = "+ e.BASIC);
 
-            e.BASIC = 19000000;
+            e.BASIC = 1300000;
 
-            e.deptNo = 1;
-            Console.WriteLine("department no is " + e.deptNo);
+            e.DEPTNO = 1;
+            Console.WriteLine("department no is "+ e.DEPTNO);
 
-            e.deptNo = -2;
+            e.DEPTNO = -2;
+
+            Employee o1 = new Employee("Amol", 123465, 10);
+            Employee o2 = new Employee("Amol", 123465);
+            Employee o3 = new Employee("Amol");
 
 
-            //Employee o1 = new Employee("Amol", 123465, 10);
-            //Employee o2 = new Employee("Amol", 123465);
-            //Employee o3 = new Employee("Amol");
             Employee o4 = new Employee();
-
-            //Employee o = new Employee();
-            //Console.WriteLine(o.EmpNo);
-            //Console.ReadLine();
-
-           // Employee o4 = new Employee();
             Employee o5 = new Employee();
             Employee o6 = new Employee();
+           
 
 
-
-            Console.WriteLine("netsalary is " + e.GetNetSalary());
+            Console.WriteLine("netsalary is "+e.GetNetSalary());
 
             Console.ReadLine();
         }
     }
+
     public class Employee
     {
-       
-       
-        short DeptNo;
-        decimal deduction;
-        decimal NetSalary;
-
-       
-
-        private string Name;
-
-        public string name
+        #region constructors
+        public Employee()
         {
-            get
-            {
-                return this.Name;
-            }
-            set
+            EmpNo++;
+            Console.WriteLine("employee no = "+EmpNo);
+        }
 
+        public Employee(string NAME,decimal BASIC,short DEPTNO)
+        {
+            this.NAME = NAME;
+            this.BASIC = BASIC;
+            this.DEPTNO = DEPTNO;
+
+            Console.WriteLine(NAME+" "+BASIC+" "+DEPTNO );
+        }
+
+        public Employee(string NAME, decimal BASIC)
+        {
+            this.NAME = NAME;
+            this.BASIC = BASIC;
+            Console.WriteLine(NAME + " " + BASIC );
+        }
+
+        public Employee(string NAME)
+        {
+            this.NAME = NAME;
+
+            Console.WriteLine(NAME );
+        }
+
+       
+
+
+        // properties
+        private String name;
+
+        public String NAME
+        {
+            set
             {
-                if (Name != String.Empty || Name != null)
+                if(value != "")
                 {
-                    Name = value;
+                    name = value;
                 }
                 else
                 {
-                    Console.WriteLine("Name cannot be null or empty string", "Name");
-                    Console.ReadLine();
+                    Console.WriteLine("bro!!! please enter valid input!!");
                 }
             }
-       
+
+            get
+            {
+                return name;
+            }
         }
 
+        private static int EmpNo;
 
-        // private static int =0;
-        private static int EmpNo = 0;
-        public int empNo
+        public static int EMPNO
         {
-            get { return EmpNo; }
-            
+            get
+            {
+                return EmpNo;
+            }
         }
 
         private decimal Basic;
 
         public decimal BASIC
         {
-           set
+            set
             {
-                if(value>11000 && value<999999)
+                if(value>100000 && value <999999)
                 {
                     Basic = value;
                 }
                 else
                 {
-                    Console.WriteLine("Given Value is Not in Range !!");
+                    Console.WriteLine("invalid basic salary");
                 }
             }
 
             get
             {
                 return Basic;
-                
             }
+
         }
 
-        private short DeptNO;
+        private short DeptNo;
 
-        public short deptNo
+        public short DEPTNO
         {
             set
             {
-               if(value > 0)
+                if (value > 0)
                 {
-                    DeptNo = value; 
+                    DeptNo = value;
+                }
+                else
+                {
+                    Console.WriteLine("invalid department no");
                 }
             }
+
             get
             {
                 return DeptNo;
             }
         }
-
+        
+        //Method
+        
         public decimal GetNetSalary()
         {
-
-            decimal basic = 110000;
-            decimal hra = 70000;
-            decimal da = 40000;
+            decimal basic = 130000;
+            decimal hra = 80000;
+            decimal da = 47000;
 
             decimal netSalary = basic + hra + da;
 
             return netSalary;
         }
-       // public int MyProperty { get; set; }
-        public Employee()
-        {
-            Name = "Pravin";
-            NetSalary = 200000;
-            DeptNo = 1;
-            EmpNo++;
-            Console.WriteLine(Name + " " + NetSalary + " " + DeptNo+" "+EmpNo);
-            Console.ReadLine();
-
-        }
-        public Employee(string Name, decimal NetSalary,short DeptNo)
-        {
-            this.Name = Name;
-            this.NetSalary = NetSalary;
-            this.DeptNo = DeptNo;
-
-            
-
-            Console.WriteLine(Name+" "+NetSalary+" "+DeptNo);
-            Console.ReadLine();
-        }
-        public Employee(string Name, decimal NetSalary)
-        {
-            this.Name = Name;
-            this.NetSalary = NetSalary;
-
-        
-            Console.WriteLine(Name+" "+NetSalary);
-            Console.ReadLine();
-        }
-        public Employee(string Name)
-        {
-            this.Name = Name;
-            Console.WriteLine(Name);
-            Console.ReadLine();
-        }
+        #endregion
     }
 }
